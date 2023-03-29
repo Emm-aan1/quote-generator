@@ -13,7 +13,6 @@ function newQuote() {
   const quote = apiQuote[Math.floor(Math.random() * apiQuote.length)];
   quoteText.textContent = quote.text;
 
-  console.log(quote)
 
   // check if author field is blank n replace with 'unkwown'
   if (!quote.author) {
@@ -22,12 +21,12 @@ function newQuote() {
     author.textContent = quote.author;
   }
 
-  // // check quote length
-  // if (quote.text.length > 50) {
-  //   quote.classList.add('long-quote');
-  // } else {
-  //   quote.classList.remove('long-quote');
-  // }
+  // check quote length
+  if (quote.text.length > 30) {
+    quoteText.classList.add('long-quote');
+  } else {
+    quoteText.classList.remove('long-quote');
+  }
 }
 
 
@@ -40,7 +39,7 @@ async function getQuotes() {
     newQuote();
   } catch (err) {
     // Catch Error Here
-    alert(err)
+    console.error(err)
   }
 }
 
