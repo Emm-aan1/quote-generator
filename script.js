@@ -1,14 +1,28 @@
 const quoteContainer = document.getElementById('quote-container');
 const quoteText = document.getElementById('quote');
 const author = document.getElementById('author');
-const twitterBtn = document.getElementById('twitter');
 const newQuoteBtn = document.getElementById('new-quote');
+const loader = document.getElementById('loader');
 
 
 let apiQuote = [];
 
+// show loading
+function loading() {
+  loader.hidden = false;
+  quoteContainer.hidden = true;
+}
+
+// hide loading
+function complete() {
+  loader.hidden = true;
+  quoteContainer.hidden = false;
+}
+
+
 // New Quote
 function newQuote() {
+  loading();
   // pick random quotes from apiQuote
   const quote = apiQuote[Math.floor(Math.random() * apiQuote.length)];
   quoteText.textContent = quote.text;
@@ -27,11 +41,13 @@ function newQuote() {
   } else {
     quoteText.classList.remove('long-quote');
   }
+  complete();
 }
 
 
 // Get Quotes From API
 async function getQuotes() {
+  loading();
   const apiUrl = 'https://jacintodesign.github.io/quotes-api/data/quotes.json';
   try {
     const response = await fetch(apiUrl);
@@ -44,17 +60,9 @@ async function getQuotes() {
 }
 
 
-// Tweet quote
-function tweetQuote() {
-  const twitterUrl = `https://twitter.com/compose/tweet?text=${quoteText.textContent} - ${author.textContent}`;
-  window.open(twitterUrl, '_blank');
-}
-
 
 // Event listeners
 newQuoteBtn.addEventListener('click', newQuote);
-twitterBtn.addEventListener('click', tweetQuote);
-
 
 
 // On Load
