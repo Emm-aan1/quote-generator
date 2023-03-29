@@ -4,7 +4,6 @@ const author = document.getElementById('author');
 const newQuoteBtn = document.getElementById('new-quote');
 const loader = document.getElementById('loader');
 
-
 let apiQuote = [];
 
 // show loading
@@ -19,14 +18,12 @@ function complete() {
   quoteContainer.hidden = false;
 }
 
-
 // New Quote
 function newQuote() {
   loading();
   // pick random quotes from apiQuote
   const quote = apiQuote[Math.floor(Math.random() * apiQuote.length)];
   quoteText.textContent = quote.text;
-
 
   // check if author field is blank n replace with 'unkwown'
   if (!quote.author) {
@@ -59,11 +56,8 @@ async function getQuotes() {
   }
 }
 
-
-
 // Event listeners
 newQuoteBtn.addEventListener('click', newQuote);
-
 
 // On Load
 getQuotes();
