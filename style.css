@@ -99,11 +99,11 @@ button:active {
     margin: auto 10px;
   }
 
-  .quote-text {
+  .quote{
     font-size: 1.8rem;
   }
 
-  .quote-author {
-    font-size: 1.2rem;
+  .author {
+    font-size: 1rem;
   }
 }
